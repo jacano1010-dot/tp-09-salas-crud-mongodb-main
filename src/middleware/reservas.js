@@ -66,7 +66,7 @@ function validarDatosReserva(datos, modo = "crear") {
 
   const camposPresentes = Object.keys(datos);
 
-  // En PUT y PATCH no se permiten campos desconocidos.
+  
   if (modo !== "crear") {
     for (const campo of camposPresentes) {
       if (!camposPermitidos.includes(campo)) {
@@ -112,8 +112,7 @@ function validarDatosReserva(datos, modo = "crear") {
     }
   }
 
-  // Personas es obligatorio en POST/PUT.
-  // En PATCH se valida solamente si está presente.
+  
   if (
     modo !== "parcial" ||
     Object.prototype.hasOwnProperty.call(datos, "personas")
@@ -129,8 +128,7 @@ function validarDatosReserva(datos, modo = "crear") {
     }
   }
 
-  // Estado es obligatorio en PUT y opcional en PATCH.
-  // POST no permite que el cliente asigne estado.
+ 
   if (
     modo === "reemplazar" ||
     (modo === "parcial" &&

@@ -27,7 +27,7 @@ function validarId(id) {
 }
 
 function crearServicioReservas() {
-  // GET - Listar reservas
+
   async function listar(sala) {
     const criterio = {};
 
@@ -40,7 +40,7 @@ function crearServicioReservas() {
     return reservas.map(convertirReserva);
   }
 
-  // GET - Buscar reserva por ID
+
   async function buscarPorId(id) {
     validarId(id);
 
@@ -49,12 +49,12 @@ function crearServicioReservas() {
     return reserva ? convertirReserva(reserva) : null;
   }
 
-  // Contar reservas persistentes
+ 
   async function contar() {
     return Reserva.countDocuments({});
   }
 
-  // POST - Crear reserva
+
   async function crear(datos) {
     const nuevaReserva = new Reserva({
       estudiante: datos.estudiante,
@@ -70,7 +70,7 @@ function crearServicioReservas() {
     return convertirReserva(reservaGuardada.toObject());
   }
 
-  // PUT - Reemplazar los siete campos editables
+  
   async function reemplazar(id, datos) {
     validarId(id);
 
@@ -93,7 +93,6 @@ function crearServicioReservas() {
     return reserva ? convertirReserva(reserva) : null;
   }
 
-  // PATCH - Modificar únicamente personas y estado
   async function modificarParcialmente(id, datos) {
     validarId(id);
 

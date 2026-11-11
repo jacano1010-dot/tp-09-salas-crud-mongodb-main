@@ -1,7 +1,7 @@
 const { URL } = require("node:url");
 
 function crearControladorReservasApi(servicio) {
-  // GET /api/reservas
+
   async function listar(req, res) {
     const url = new URL(req.originalUrl, "http://localhost");
     const parametros = url.searchParams;
@@ -39,7 +39,7 @@ function crearControladorReservasApi(servicio) {
     return res.status(200).json(reservas);
   }
 
-  // GET /api/reservas/:id
+ 
   async function detalle(req, res) {
     const id = req.params.id;
 
@@ -60,7 +60,7 @@ function crearControladorReservasApi(servicio) {
     return res.status(200).json(reserva);
   }
 
-  // POST /api/reservas
+  
   async function crear(req, res) {
     const reserva = await servicio.crear(req.reservaValidada);
 
@@ -69,7 +69,7 @@ function crearControladorReservasApi(servicio) {
     return res.status(201).json(reserva);
   }
 
-  // PUT /api/reservas/:id
+ 
   async function reemplazar(req, res) {
     const id = req.params.id;
 
@@ -90,7 +90,7 @@ function crearControladorReservasApi(servicio) {
     return res.status(200).json(reserva);
   }
 
-  // PATCH /api/reservas/:id
+ 
   async function modificarParcialmente(req, res) {
     const id = req.params.id;
 
@@ -114,7 +114,7 @@ function crearControladorReservasApi(servicio) {
     return res.status(200).json(reserva);
   }
 
-  // DELETE /api/reservas/:id
+  
   async function eliminar(req, res) {
     const id = req.params.id;
 

@@ -129,7 +129,7 @@ async function main() {
       return;
     }
 
-    // Validamos antes de conectar para evitar escrituras inválidas.
+   
     const nuevaReserva = new Reserva(datos);
     await nuevaReserva.validate();
 

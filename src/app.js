@@ -19,42 +19,42 @@ function crearApp({
 }) {
   const app = express();
 
-  // Middleware general
+  
   app.use(morgan(formatoMorgan));
   app.use(identificarSolicitud);
   app.use(medirDuracion);
 
-  // Archivos estáticos y formularios
+  
   app.use(expressLayouts);
   app.use(express.static(path.join(cwd(), "public")));
   app.use(express.urlencoded({ extended: true }));
   app.use(express.json());
 
-  // Configuración de EJS
+
   app.set("view engine", "ejs");
   app.set("views", path.join(cwd(), "views"));
   app.set("layout", "layouts/main");
 
-  // Rutas principales
+  
   app.get("/", controladorReservas.inicio);
   app.get("/estado", controladorReservas.estado);
 
-  // Router HTML
+ 
   const reservasRouter = crearRouterReservas(controladorReservas);
   app.use("/reservas", reservasRouter);
 
-  // Router API JSON
+
   const reservasApiRouter = crearRouterReservasApi(controladorReservasApi);
   app.use("/api/reservas", reservasApiRouter);
 
-  // API: ruta inexistente
+
   app.use("/api", (req, res) => {
     return res.status(404).json({
       error: "El endpoint solicitado no existe.",
     });
   });
 
-  // HTML: ruta inexistente
+  
   app.use((req, res) => {
     return res.status(404).render("no-encontrado", {
       titulo: "Página no encontrada",
@@ -62,7 +62,7 @@ function crearApp({
     });
   });
 
-  // Middleware centralizado de errores
+  
   app.use((error, req, res, next) => {
     if (res.headersSent) {
       return next(error);

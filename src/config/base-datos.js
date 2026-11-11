@@ -2,7 +2,7 @@ const dns = require("node:dns");
 const mongoose = require("mongoose");
 const { obtenerMongoUri } = require("./entorno");
 
-// Resolutores DNS utilizados en la clase.
+
 dns.setServers(["8.8.8.8", "1.1.1.1"]);
 
 async function conectarBaseDatos() {

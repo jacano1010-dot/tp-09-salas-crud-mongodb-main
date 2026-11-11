@@ -13,16 +13,16 @@ const {
 
 const { puerto, formatoMorgan } = require("./config/entorno");
 
-// Servicio de reservas persistente
+
 const servicioReservas = crearServicioReservas();
 
-// Controlador HTML
+
 const controladorReservas = crearControladorReservas(servicioReservas);
 
-// Controlador API JSON
+
 const controladorReservasApi = crearControladorReservasApi(servicioReservas);
 
-// Configuración de Express
+
 const app = crearApp({
   controladorReservas,
   controladorReservasApi,
@@ -32,7 +32,7 @@ const app = crearApp({
 let servidor;
 let cerrando = false;
 
-// Iniciar MongoDB antes de escuchar solicitudes
+
 async function iniciar() {
   try {
     await conectarBaseDatos();
@@ -49,7 +49,7 @@ async function iniciar() {
   }
 }
 
-// Cierre ordenado
+
 async function cerrarServidor(senal) {
   if (cerrando) {
     return;
@@ -82,15 +82,15 @@ async function cerrarServidor(senal) {
   }
 }
 
-// Señal Ctrl + C
+
 process.on("SIGINT", () => {
   void cerrarServidor("SIGINT");
 });
 
-// Señal de terminación
+
 process.on("SIGTERM", () => {
   void cerrarServidor("SIGTERM");
 });
 
-// Iniciar aplicación
+
 void iniciar();
